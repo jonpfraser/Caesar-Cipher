@@ -1,0 +1,32 @@
+<div>
+    <div class="text-center">
+        <h1 class="text-2xl">Caesar-Cipher</h1>
+        <p class="mt-1">Enter a string to encrypt it .</p>
+    </div>
+    <form>
+        <div class="mt-2">
+            <input type="number" id="shiftValue" class="block w-full rounded-md border-0 mb-2 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="13" />
+            <textarea name="Text1" name="plainText" id="plainText" class="block w-full rounded-md border-0 p-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" cols="40" rows="5"></textarea>
+        </div>
+    </form>
+    <p id="cipherText"></p>
+</div>
+
+<script type="module">
+    import CaesarCipher from '../js/Classes/CaesarCipher.js'
+
+    const input = document.querySelector('#plainText');
+    const cipherText = document.querySelector('#cipherText');
+    const shiftInput = document.querySelector('#shiftValue');
+
+    let shiftVal = shiftInput.value;
+    const cipher = new CaesarCipher('alphaNumeric');
+
+    input.addEventListener('input', (e) => {
+        cipherText.innerText = cipher.encode(e.target.value, shiftVal);
+    });
+
+    shiftInput.addEventListener('input', (e) => {
+        cipherText.innerText = cipher.encode(input.value, e.target.value);
+    });
+</script>

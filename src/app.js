@@ -20,6 +20,10 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+import indexRouter from './routes/index.js';
+
+app.use('/', indexRouter);
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
